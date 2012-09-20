@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>API Browser</title>
+    <link rel="stylesheet" href="{{ STATIC_URL }}api_browser/css/h5bp.css">
+    <link rel="stylesheet" href="{{ STATIC_URL }}api_browser/css/screen.css">
+</head>
+<body>
+
+    <header>
+    </header>
+
+    {% for resource in schema.resources %}
+    <section class="resource">
+        <header>
+            <h3>{{ resource.name }}</h3>
+        </header>
+        <ul>
+            {% for endpoint in resource.endpoints %}
+            <li class="{{ endpoint.method|lower }}">
+                <a href="#">
+                    <strong>{{ endpoint.method|upper }}</strong>
+                    <span>{{ endpoint.url }}</span>
+                    <i>{{ endpoint.description }}</i>
+                </a>
+                <form action="{{ endpoint.url }}" method="{{ endpoint.method|lower }}">
+                    {% for parameter, type in endpoint.parameters %}
+                        {{ parameter }} <input type="text" name="{{ parameter }}" />
+                    {% endfor %}
+                    <input type="submit" value="{{ endpoint.method }}">
+                </form>
+            </li>
+            {% endfor %}
+        </ul>
+    </section>
+    {% endfor %}
+</body>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script src="{{ STATIC_URL }}api_browser/js/jquery.rest-form.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $("form").restForm()
+    });
+</script>
+</html>

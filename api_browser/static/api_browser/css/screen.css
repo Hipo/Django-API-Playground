@@ -1,0 +1,133 @@
+/*
+* General definitions
+*/
+body {
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 20px;
+    color: gray;
+    width: 900px;
+    margin: auto;
+}
+
+/*
+* Header definitions
+*/
+
+body > header {
+    margin-top: 70px;
+    background-color: #ebebeb;
+}
+
+    body > header h1 {
+        font-size: 30px;
+        font-weight: normal;
+        padding: 5px 15px;
+    }
+
+/*
+* API information definitions
+*/
+
+section.api-info {
+    margin-left: 10px;
+}
+
+    section.api-info h2 {
+        font-size: 26px;
+        font-weight: normal;
+        margin: 0;
+        padding: 0;
+    }
+
+    section.api-info p {
+        margin: 0;
+        padding: 0;
+    }
+
+/*
+* Resource definitions
+*/
+section.resource {
+
+    margin: 10px;
+}
+
+    section.resource header h3 {
+        font-size: 25px;
+        margin: 0;
+        font-weight: normal;
+        color: black;
+    }
+
+    section.resource  ul {
+        padding: 0;
+        margin: 0;
+    }
+
+        section.resource ul li {
+            list-style-type: none;
+        }
+
+        section.resource ul li.get {
+            background-color: #f8ffea;
+        }
+
+        section.resource ul li.delete {
+            background-color: #fffbe6;
+        }
+
+        section.resource ul li.post {
+            background-color: #eaf6ff;
+        }
+
+            section.resource ul li a {
+                display: block;
+                margin: 5px 0;
+                text-decoration: none;
+                color: rgb(82, 82, 82);
+                overflow: hidden;
+            }
+
+                section.resource ul li strong {
+                    font-weight: normal;
+                    display: block;
+                    float: left;
+                    padding-top: 2px;
+                    width: 90px;
+                    text-align: center;
+                }
+
+                section.resource ul li span {
+                    display: block;
+                    float: left;
+                    margin-left: 20px;
+                    padding-top: 2px;
+                }
+
+                section.resource ul li a i {
+                    font-style: normal;
+                    display: block;
+                    float: right;
+                    padding-top: 3px;
+                    padding-right: 5px;
+                    font-size: 19px;
+                }
+
+                /*
+                * HTTP Method definitions
+                */
+                section.resource ul li.get strong {
+                    background-color: #e7ff81;
+                }
+
+                section.resource ul li.delete strong {
+                    background-color: #ff9495;
+                }
+
+                section.resource ul li.post strong {
+                    background-color: #a3d7ff;
+                }
+
+
+
+
