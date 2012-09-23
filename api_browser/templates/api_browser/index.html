@@ -1,3 +1,4 @@
+{% load api_browser_tags %}
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,29 +18,92 @@
         </header>
         <ul>
             {% for endpoint in resource.endpoints %}
-            <li class="{{ endpoint.method|lower }}">
+            <li class="{{ endpoint.method|lower }} endpoint">
                 <a href="#">
                     <strong>{{ endpoint.method|upper }}</strong>
                     <span>{{ endpoint.url }}</span>
                     <i>{{ endpoint.description }}</i>
                 </a>
-                <form action="{{ endpoint.url }}" method="{{ endpoint.method|lower }}">
-                    {% for parameter, type in endpoint.parameters %}
-                        {{ parameter }} <input type="text" name="{{ parameter }}" />
-                    {% endfor %}
-                    <input type="submit" value="{{ endpoint.method }}">
-                </form>
+                <section class="try-it">
+                    {% get_url_parameters endpoint.url as url_parameters %}
+                    <form action="#">
+                        {% if url_parameters %}<h2>URL Parameters</h2>{% endif %}
+                        {% for token, parameter in url_parameters %}
+                        <div class="form-line">
+                            <label for="{{ parameter }}">{{ parameter }}</label>
+                            <input id="{{ parameter }}" data-token="{{ token }}" type="text" name="{{ parameter }}">
+                        </div>
+                        {% endfor %}
+                    </form>
+                    <form action="{{ endpoint.url }}" method="{{ endpoint.method|upper }}">
+
+                        {% if endpoint.parameters %}<h2>Data</h2>{% endif %}
+                        {% build_parameter_form endpoint.parameters as parameter_form %}
+                        {{ parameter_form.as_p }}
+
+                        <input class="punch" type="submit" value="{{ endpoint.method }}">
+                    </form>
+                    <section class="result request">
+                        <h2>Request</h2>
+                        <pre><code></code></pre>
+                    </section>
+                    <section class="result response-status">
+                        <h2>Response Status</h2>
+                        <pre><code></code></pre>
+                    </section>
+
+                    <section class="result response-headers">
+                        <h2>Response Status</h2>
+                        <pre><code></code></pre>
+                    </section>
+
+                    <section class="result response-body">
+                        <h2>Response Headers</h2>
+                        <pre><code></code></pre>
+                    </section>
+                </section>
             </li>
             {% endfor %}
         </ul>
     </section>
     {% endfor %}
 </body>
+
+<!-- Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if offline -->
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="{{ STATIC_URL }}' +
+        'api_browser/js/jquery-1.7.1.min.js"><\/script>')</script>
 <script src="{{ STATIC_URL }}api_browser/js/jquery.rest-form.js"></script>
+<script src="{{ STATIC_URL }}api_browser/js/jquery.form2json.js"></script>
 <script type="text/javascript">
     $(function () {
-        $("form").restForm()
+        $("form").restForm({
+            "submit": function (request_headers) {
+
+                var request = $(this).siblings(".request");
+                request.show().find("code").html(request_headers.join("\n"));
+
+
+
+            },
+            "complete": function (xhr) {
+                a=xhr
+
+                $(this).siblings(".response-status").show().find("code").html(
+                        xhr.statusText + " (" + xhr.status + ")")
+
+                $(this).siblings(".response-headers").show().find("code").html(
+                        xhr.getAllResponseHeaders());
+
+                $(this).siblings(".response-body").show().find("code").text(
+                        xhr.responseText || "(EMPTY)");
+            }
+        });
+
+        $(".endpoint a").click(function () {
+            $(this).parent().find(".try-it").slideToggle(100);
+            return false;
+        });
     });
 </script>
 </html>

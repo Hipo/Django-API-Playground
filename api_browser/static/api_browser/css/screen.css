@@ -66,26 +66,42 @@ section.resource {
 
         section.resource ul li {
             list-style-type: none;
+            padding-bottom: 10px;
         }
 
-        section.resource ul li.get {
-            background-color: #f8ffea;
-        }
+            section.resource ul li .try-it {
+                padding: 10px 0;
+                background-color: #fbfbfb;
+                border-bottom: 1px solid #e8e8e8;
+                display: none;
+            }
 
-        section.resource ul li.delete {
-            background-color: #fffbe6;
-        }
-
-        section.resource ul li.post {
-            background-color: #eaf6ff;
-        }
+            section.resource ul li .result {
+                display: none;
+            }
 
             section.resource ul li a {
                 display: block;
-                margin: 5px 0;
+                margin: 5px 0 0;
                 text-decoration: none;
                 color: rgb(82, 82, 82);
                 overflow: hidden;
+            }
+
+            section.resource ul li.get a {
+                background-color: #f8ffea;
+            }
+
+            section.resource ul li.delete a {
+                background-color: #fffbe6;
+            }
+
+            section.resource ul li.post a {
+                background-color: #eaf6ff;
+            }
+
+            section.resource ul li.put a {
+                background-color: #d2ffd6;
             }
 
                 section.resource ul li strong {
@@ -128,6 +144,53 @@ section.resource {
                     background-color: #a3d7ff;
                 }
 
+                section.resource ul li.put strong {
+                    background-color: #90ff7e;
+                }
 
+                section.resource ul li h2 {
+                    font-size: 17px;
+                    padding: 0;
+                    color: #bebebe;
+                    border-bottom: 1px solid #DEDEE9;
+                    display: block;
+                    width: 100%;
+                    margin-bottom: -4px;
+                    margin-top: 10px;
+                    font-weight: normal;
+                }
 
+                section.resource ul li pre {
+                    margin: 10px 0;
+                    font-size: 14px;
+                }
 
+                section.resource ul li form, section.resource ul li .result {
+                    margin: 0 100px;
+                    overflow: hidden;
+                }
+
+                    section.resource ul li form p  {
+                        width: 49%;
+                        float: left;
+                        margin-bottom: 10px;
+                    }
+
+                    section.resource ul li form label {
+                        display: block;
+                        width: 100%;
+                        margin-top: 10px;
+                        font-size: 16px;
+                    }
+
+                    section.resource ul li form input[type="submit"] {
+
+                    }
+
+                    section.resource ul li form input[type="submit"]:hover {
+
+                    }
+
+                    section.resource ul li form input[type="submit"]:active {
+
+                    }

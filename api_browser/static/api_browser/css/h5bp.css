@@ -130,7 +130,7 @@ button, input { line-height: normal; }
  * 3. Correct inner spacing displayed oddly in IE7 (doesn't effect IE6)
  */
 
-button, input[type="button"], input[type="reset"], input[type="submit"] { cursor: pointer; -webkit-appearance: button; *overflow: visible; }
+/*button, input[type="button"], input[type="reset"], input[type="submit"] { cursor: pointer; -webkit-appearance: button; *overflow: visible; }*/
 
 /*
  * Re-set default cursor for disabled elements
@@ -161,7 +161,6 @@ textarea { overflow: auto; vertical-align: top; resize: vertical; }
 
 /* Colors for form validity */
 input:valid, textarea:valid {  }
-input:invalid, textarea:invalid { background-color: #f0dddd; }
 
 
 /* =============================================================================
