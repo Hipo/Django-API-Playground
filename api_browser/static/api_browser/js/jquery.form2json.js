@@ -1,25 +1,30 @@
 /*
-* http://css-tricks.com/snippets/jquery/serialize-form-to-json/
+* Serializes form data as object.
 * */
 !function ($) {
 
-    $.fn.form2json = function()
-    {
-        var o = {};
-        var a = this.serializeArray();
+    $.fn.form2json = function(_options) {
+        var options = $.extend({
+            "include": "select, input, textarea",
+            "exclude": "input[type='button'], input[type='submit'], [data-token]"
+        }, _options);
 
-        $.each(a, function() {
-            var value = this.value || '' ;
-            if (o[this.name]) {
-                if (!o[this.name].push) {
-                    o[this.name] = [o[this.name]];
-                }
-                o[this.name].push(value);
-            } else {
-                o[this.name] = value;
+        var get_input_value = function (input) {
+            if (input.is(":checkbox")) {
+                return input.is(":checked");
             }
+            else {
+                return input.val();
+            }
+        };
+
+        var result_object = {};
+        this.find(options.include).not(options.exclude).each(function () {
+            var input_name = $(this).attr("name");
+            result_object[input_name] = get_input_value($(this));
         });
-        return o;
+
+        return result_object;
     };
 
 }(window.jQuery);

@@ -25,23 +25,22 @@
                     <i>{{ endpoint.description }}</i>
                 </a>
                 <section class="try-it">
-                    {% get_url_parameters endpoint.url as url_parameters %}
-                    <form action="#">
-                        {% if url_parameters %}<h2>URL Parameters</h2>{% endif %}
-                        {% for token, parameter in url_parameters %}
-                        <div class="form-line">
-                            <label for="{{ parameter }}">{{ parameter }}</label>
-                            <input id="{{ parameter }}" data-token="{{ token }}" type="text" name="{{ parameter }}">
-                        </div>
-                        {% endfor %}
-                    </form>
                     <form action="{{ endpoint.url }}" method="{{ endpoint.method|upper }}">
 
-                        {% if endpoint.parameters %}<h2>Data</h2>{% endif %}
-                        {% build_parameter_form endpoint.parameters as parameter_form %}
-                        {{ parameter_form.as_p }}
+                        {% get_endpoint_forms endpoint as forms %}
 
-                        <input class="punch" type="submit" value="{{ endpoint.method }}">
+                        <fieldset>
+                            <legend>URL Parameters</legend>
+                            {{ forms.url_parameter_form.as_p }}
+                        </fieldset>
+
+
+                        <fieldset>
+                            <legend>Data Parameters</legend>
+                            {{ forms.data_parameter_form.as_p }}
+                        </fieldset>
+
+                        <input type="submit" value="{{ endpoint.method }}">
                     </form>
                     <section class="result request">
                         <h2>Request</h2>

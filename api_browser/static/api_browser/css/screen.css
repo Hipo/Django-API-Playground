@@ -148,7 +148,12 @@ section.resource {
                     background-color: #90ff7e;
                 }
 
-                section.resource ul li h2 {
+                section.resource ul li fieldset {
+                    margin: 10px 0;
+                    padding: 0;
+                }
+
+                section.resource ul li h2, legend {
                     font-size: 17px;
                     padding: 0;
                     color: #bebebe;
@@ -173,6 +178,7 @@ section.resource {
                     section.resource ul li form p  {
                         width: 49%;
                         float: left;
+                        margin-top: 0;
                         margin-bottom: 10px;
                     }
 
