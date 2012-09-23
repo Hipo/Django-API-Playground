@@ -1,4 +1,5 @@
 /*
+*   restForm
 *
 *   fatiherikli at gmail dot com
 *   http://fatiherikli.com
@@ -25,14 +26,17 @@
 
         this.each(function () {
             $(this).submit(function () {
-                var data = $(this).form2json();
-                var method = $(this).attr("method");
-                var url = $(this).attr("action");
+                var form = $(this);
+                var data = form.form2json();
+                var method = form.attr("method");
+                var url = form.attr("action");
                 var content_type = 'application/json';
 
-                options.submit.call(this, build_request_headers(method, url, data,
+                // firing submit event
+                options.submit.call(this, form, build_request_headers(method, url, data,
                                                                 content_type));
 
+                // calling api resource
                 $.ajax({
                     url: url,
                     type: method,
@@ -40,7 +44,7 @@
                     contentType: content_type,
                     dataType: 'json',
                     processData: false
-                }).complete(options.complete.bind(this));
+                }).complete(options.complete.bind(this, form));
 
                 return false;
 

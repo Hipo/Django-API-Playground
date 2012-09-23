@@ -9,12 +9,17 @@
 <body>
 
     <header>
+        <hgroup>
+            <h1>API Browser</h1>
+            <h2></h2>
+        </hgroup>
     </header>
 
     {% for resource in schema.resources %}
     <section class="resource">
         <header>
             <h3>{{ resource.name }}</h3>
+            <p>Helps you for managing todos.</p>
         </header>
         <ul>
             {% for endpoint in resource.endpoints %}
@@ -25,44 +30,28 @@
                     <i>{{ endpoint.description }}</i>
                 </a>
                 <section class="try-it">
-                    <form action="{{ endpoint.url }}" method="{{ endpoint.method|upper }}">
-
+                    <form action="{{ endpoint.url }}" data-endpoint-url="{{ endpoint.url }}" method="{{ endpoint.method|upper }}">
+                        {% spaceless %}
                         {% get_endpoint_forms endpoint as forms %}
-
-                        <fieldset>
+                        {% if forms.url_parameter_form.fields %}
+                        <fieldset class="url-parameters">
                             <legend>URL Parameters</legend>
                             {{ forms.url_parameter_form.as_p }}
                         </fieldset>
-
-
+                        {% endif %}{% if forms.data_parameter_form.fields %}
                         <fieldset>
                             <legend>Data Parameters</legend>
                             {{ forms.data_parameter_form.as_p }}
                         </fieldset>
-
+                        {% endif %}
                         <input type="submit" value="{{ endpoint.method }}">
-                    </form>
-                    <section class="result request">
-                        <h2>Request</h2>
-                        <pre><code></code></pre>
-                    </section>
-                    <section class="result response-status">
-                        <h2>Response Status</h2>
-                        <pre><code></code></pre>
-                    </section>
-
-                    <section class="result response-headers">
-                        <h2>Response Status</h2>
-                        <pre><code></code></pre>
-                    </section>
-
-                    <section class="result response-body">
-                        <h2>Response Headers</h2>
-                        <pre><code></code></pre>
-                    </section>
+                    {% endspaceless %}</form>
+                    <section class="result request"><h2>Request</h2><pre><code></code></pre></section>
+                    <section class="result response-status"><h2>Response Status</h2><pre><code></code></pre></section>
+                    <section class="result response-headers"><h2>Response Status</h2><pre><code></code></pre></section>
+                    <section class="result response-body"><h2>Response Headers</h2><pre><code></code></pre></section>
                 </section>
-            </li>
-            {% endfor %}
+            </li>{% endfor %}
         </ul>
     </section>
     {% endfor %}
@@ -72,37 +61,13 @@
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <script>window.jQuery || document.write('<script src="{{ STATIC_URL }}' +
         'api_browser/js/jquery-1.7.1.min.js"><\/script>')</script>
+<script src="{{ STATIC_URL }}api_browser/js/jquery.class.min.js"></script>
 <script src="{{ STATIC_URL }}api_browser/js/jquery.rest-form.js"></script>
 <script src="{{ STATIC_URL }}api_browser/js/jquery.form2json.js"></script>
+<script src="{{ STATIC_URL }}api_browser/js/app.js"></script>
 <script type="text/javascript">
     $(function () {
-        $("form").restForm({
-            "submit": function (request_headers) {
-
-                var request = $(this).siblings(".request");
-                request.show().find("code").html(request_headers.join("\n"));
-
-
-
-            },
-            "complete": function (xhr) {
-                a=xhr
-
-                $(this).siblings(".response-status").show().find("code").html(
-                        xhr.statusText + " (" + xhr.status + ")")
-
-                $(this).siblings(".response-headers").show().find("code").html(
-                        xhr.getAllResponseHeaders());
-
-                $(this).siblings(".response-body").show().find("code").text(
-                        xhr.responseText || "(EMPTY)");
-            }
-        });
-
-        $(".endpoint a").click(function () {
-            $(this).parent().find(".try-it").slideToggle(100);
-            return false;
-        });
+        new APIBrowser();
     });
 </script>
 </html>

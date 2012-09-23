@@ -29,7 +29,7 @@ class ExampleAPIBrowser(APIBrowser):
                     },
                     {
                         "method": "PUT",
-                        "url": "/api/todos/{{todo-id}}",
+                        "url": "/api/todos/{todo-id}",
                         "description": "Updates specific todo item",
                         "parameters": [{
                             "name": "description",
@@ -49,7 +49,7 @@ class ExampleAPIBrowser(APIBrowser):
                     },
                     {
                         "method": "GET",
-                        "url": "/api/todos//{todo-id}",
+                        "url": "/api/todos/{todo-id}",
                         "description": "Returns specific todo item."
                     }
                 ]

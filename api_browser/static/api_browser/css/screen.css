@@ -15,13 +15,13 @@ body {
 
 body > header {
     margin-top: 70px;
-    background-color: #ebebeb;
 }
 
     body > header h1 {
-        font-size: 30px;
-        font-weight: normal;
+        font-size: 25px;
+        font-weight: bold;
         padding: 5px 15px;
+        text-align: center;
     }
 
 /*
@@ -48,15 +48,21 @@ section.api-info {
 * Resource definitions
 */
 section.resource {
-
-    margin: 10px;
+    margin: 10px 0 30px;
 }
 
     section.resource header h3 {
-        font-size: 25px;
+        font-size: 28px;
         margin: 0;
         font-weight: normal;
-        color: black;
+        color: #636363;
+    }
+
+    section.resource header p {
+        font-size: 15px;
+        background-color: #fff;
+        margin: 0;
+        padding: 5px 2px;
     }
 
     section.resource  ul {
@@ -66,7 +72,7 @@ section.resource {
 
         section.resource ul li {
             list-style-type: none;
-            padding-bottom: 10px;
+            padding-bottom: 0;
         }
 
             section.resource ul li .try-it {
@@ -126,7 +132,7 @@ section.resource {
                     float: right;
                     padding-top: 3px;
                     padding-right: 5px;
-                    font-size: 19px;
+                    font-size: 15px;
                 }
 
                 /*
