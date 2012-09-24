@@ -1,6 +1,6 @@
 from django import forms
 
-from api_browser.models import Feedback
+from apiplayground.models import Feedback
 
 
 class FeedbackForm(forms.ModelForm):

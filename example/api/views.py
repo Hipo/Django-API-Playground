@@ -1,4 +1,4 @@
-from api_browser.browser import APIBrowser
+from apiplayground.browser import APIBrowser
 
 class ExampleAPIBrowser(APIBrowser):
 

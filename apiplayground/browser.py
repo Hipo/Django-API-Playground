@@ -5,8 +5,8 @@ from django.http import HttpResponse, HttpResponseBadRequest
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 
-from api_browser.forms import FeedbackForm
-from api_browser.settings import API_BROWSER_SCHEMA_PATH
+from apiplayground.forms import FeedbackForm
+from apiplayground.settings import API_BROWSER_SCHEMA_PATH
 
 
 class APIBrowser(object):

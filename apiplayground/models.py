@@ -1,7 +1,7 @@
 from django.db import models
 from django.utils.encoding import smart_unicode
 
-from api_browser.constants import STATUS_CHOICES, STATUS_OPEN
+from apiplayground.constants import STATUS_CHOICES, STATUS_OPEN
 
 
 class Feedback(models.Model):
