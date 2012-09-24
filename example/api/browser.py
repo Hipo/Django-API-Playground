@@ -8,6 +8,7 @@ class ExampleAPIBrowser(APIBrowser):
         "resources": [
             {
                 "name": "/todos",
+                "description": "Helps you for managing todos.",
                 "endpoints": [
                     {
                         "method": "GET",
@@ -56,6 +57,7 @@ class ExampleAPIBrowser(APIBrowser):
             },
             {
                 "name": "/links",
+                "description": "Helps you for managing links.",
                 "endpoints": [
                     {
                         "method": "GET",

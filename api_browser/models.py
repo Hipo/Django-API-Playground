@@ -9,6 +9,7 @@ class Feedback(models.Model):
     Holds Feedback data.
     """
     title = models.CharField(max_length=255)
+    resource = models.CharField(max_length=255, null=True, blank=True)
     description = models.TextField(null=True, blank=True)
     status = models.IntegerField(choices=STATUS_CHOICES, default=STATUS_OPEN)
     duplicate = models.ForeignKey("self", null=True, blank=True)

@@ -2,8 +2,13 @@ var APIBrowser = $.Class.extend({
 
     EMPTY_RESPONSE: "(EMPTY RESPONSE)",
     SLIDE_DURATION: 100,
+    FADE_DURATION: 500,
+    HIGHLIGHT_DURATION: 2000,
 
     selectors: {
+        input_fields: "input[type='text'], input[type='checkbox'], textarea, select",
+
+        // API Resources
         endpoint_form : ".endpoint form",
         endpoint_anchor: ".endpoint a",
         try_it: ".try-it",
@@ -12,13 +17,19 @@ var APIBrowser = $.Class.extend({
         response_status: ".response-status",
         response_headers: ".response-headers",
         response_body: ".response-body",
-        url_parameters: ".url-parameters input"
+        url_parameters: ".url-parameters input",
+
+        // API Feedback
+        feedback_form: "#submit-feedback form",
+        feedback_response: "#submit-feedback #feedback-response",
+        feedback_show_button: "#submit-feedback-button"
     },
 
     init: function () {
         this.load_rest_form();
-        this.make_expandable(this.selectors.endpoint_anchor,
-                            this.selectors.try_it, this.SLIDE_DURATION);
+        this.load_feedback_form();
+        this.make_expandable(this.selectors.endpoint_anchor, this.selectors.try_it, this.SLIDE_DURATION);
+        this.make_expandable(this.selectors.feedback_show_button, this.selectors.feedback_form, this.SLIDE_DURATION);
         this.fill_url_parameters(this.selectors.url_parameters, this.selectors.endpoint_form);
     },
 
@@ -29,12 +40,12 @@ var APIBrowser = $.Class.extend({
         });
     },
 
-    "submit_form": function (form, request_headers) {
+    submit_form: function (form, request_headers) {
         form.siblings(this.selectors.request).show().
             find(this.selectors.code).html(request_headers.join("\n"));
     },
 
-    "complete_ajax_request": function (form, xhr) {
+    complete_ajax_request: function (form, xhr) {
         form.siblings(this.selectors.response_status).show().find(
             this.selectors.code).html(xhr.statusText + " (" + xhr.status + ")");
 
@@ -52,13 +63,39 @@ var APIBrowser = $.Class.extend({
         });
     },
 
-    "fill_url_parameters": function (url_parameters, form_selector) {
+    fill_url_parameters: function (url_parameters, form_selector) {
         $(url_parameters).change(function () {
             var form = $(this).parents(form_selector);
             var rendered_url = form.data("endpoint-url").replace(
                 $(this).data("token"), $(this).val());
             form.attr("action", rendered_url)
         })
+    },
+
+    // TODO: seperate feedback logic from the api browser.
+
+    load_feedback_form: function () {
+        $(this.selectors.feedback_form).submit(function () {
+            var form = $(this.selectors.feedback_form);
+            $.post(form.attr("action"), form.serialize(), this.show_feedback_response.bind(this), "json");
+            return false;
+        }.bind(this));
+    },
+
+    show_feedback_response: function (response) {
+        var feedback_response = $(this.selectors.feedback_response);
+        var feedback_form = $(this.selectors.feedback_form);
+        if (response.success) {
+            feedback_form.hide();
+            feedback_response.fadeIn(this.FADE_DURATION);
+            feedback_response.delay(this.HIGHLIGHT_DURATION).fadeOut(this.FADE_DURATION);
+            this.clear_feedback_form(feedback_form);
+        }
+    },
+
+    clear_feedback_form: function (form) {
+        form.find(this.selectors.input_fields).val("");
     }
+
 
 });

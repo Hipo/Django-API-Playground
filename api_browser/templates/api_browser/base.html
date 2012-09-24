@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>API Browser</title>
+    <link rel="stylesheet" href="{{ STATIC_URL }}api_browser/css/h5bp.css">
+    <link rel="stylesheet" href="{{ STATIC_URL }}api_browser/css/screen.css">
+</head>
+<body>
+
+    <header>
+        <h1><a href="/">API Browser</a></h1>
+    </header>
+    {% block content %}
+    {% endblock %}
+
+    <footer>{% block footer %}{% endblock %}</footer>
+</body>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="{{ STATIC_URL }}' +
+        'api_browser/js/jquery-1.7.1.min.js"><\/script>')</script>
+<script src="{{ STATIC_URL }}api_browser/js/jquery.class.min.js"></script>
+<script src="{{ STATIC_URL }}api_browser/js/jquery.rest-form.js"></script>
+<script src="{{ STATIC_URL }}api_browser/js/jquery.form2json.js"></script>
+<script src="{{ STATIC_URL }}api_browser/js/app.js"></script>
+{% block javascripts %}{% endblock %}
+</html>

@@ -15,14 +15,24 @@ body {
 
 body > header {
     margin-top: 70px;
+    overflow: hidden;
+
 }
 
     body > header h1 {
-        font-size: 25px;
-        font-weight: bold;
-        padding: 5px 15px;
+        font-size: 30px;
+        font-weight: normal;
         text-align: center;
+        margin: 0;
+
     }
+
+    body > header h1 a {
+        color: gray;
+        text-decoration: none;
+    }
+
+
 
 /*
 * API information definitions
@@ -206,3 +216,53 @@ section.resource {
                     section.resource ul li form input[type="submit"]:active {
 
                     }
+
+
+/*
+* Feedback form definitions
+*/
+
+#submit-feedback {
+    bottom: 0;
+    position: fixed;
+    margin-left: 500px;
+    width: 400px;
+}
+
+    #submit-feedback form {
+
+        background-color: #f6f6f6;
+        padding: 10px;
+        margin: 0;
+        display: none;
+    }
+        #submit-feedback p {
+            margin: 0;
+        }
+
+        #submit-feedback label {
+            margin: 4px 0;
+            display: block;
+            font-size: 17px;
+        }
+
+        #submit-feedback textarea {
+            width: 300px;
+            height: 70px;
+        }
+
+        #submit-feedback #submit-feedback-button {
+            font-size: 16px;
+            padding: 7px 10px;
+            text-decoration: none;
+            background-color: #CE1446;
+            color: white;
+            display: block;
+            float: right;
+        }
+
+        #submit-feedback #feedback-response {
+            background-color: #fdffd1;
+            padding: 10px;
+            display: none;
+        }

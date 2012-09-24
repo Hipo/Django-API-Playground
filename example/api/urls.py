@@ -10,7 +10,7 @@ urlpatterns = patterns('',
 
     (r'^', include(ToDoResource().urls)),
     (r'^', include(LinksResource().urls)),
-    (r'browser', include(ExampleAPIBrowser().urls)),
+    (r'browser/', include(ExampleAPIBrowser().urls)),
 
 
 )

@@ -1,21 +1,9 @@
+{% extends "api_browser/base.html" %}
+{% load i18n %}
+
+{% block content %}
 {% load api_browser_tags %}
-<!DOCTYPE html>
-<html>
-<head>
-    <title>API Browser</title>
-    <link rel="stylesheet" href="{{ STATIC_URL }}api_browser/css/h5bp.css">
-    <link rel="stylesheet" href="{{ STATIC_URL }}api_browser/css/screen.css">
-</head>
-<body>
-
-    <header>
-        <hgroup>
-            <h1>API Browser</h1>
-            <h2></h2>
-        </hgroup>
-    </header>
-
-    {% for resource in schema.resources %}
+{% for resource in schema.resources %}
     <section class="resource">
         <header>
             <h3>{{ resource.name }}</h3>
@@ -23,51 +11,57 @@
         </header>
         <ul>
             {% for endpoint in resource.endpoints %}
-            <li class="{{ endpoint.method|lower }} endpoint">
-                <a href="#">
-                    <strong>{{ endpoint.method|upper }}</strong>
-                    <span>{{ endpoint.url }}</span>
-                    <i>{{ endpoint.description }}</i>
-                </a>
-                <section class="try-it">
-                    <form action="{{ endpoint.url }}" data-endpoint-url="{{ endpoint.url }}" method="{{ endpoint.method|upper }}">
-                        {% spaceless %}
-                        {% get_endpoint_forms endpoint as forms %}
-                        {% if forms.url_parameter_form.fields %}
-                        <fieldset class="url-parameters">
-                            <legend>URL Parameters</legend>
-                            {{ forms.url_parameter_form.as_p }}
-                        </fieldset>
-                        {% endif %}{% if forms.data_parameter_form.fields %}
-                        <fieldset>
-                            <legend>Data Parameters</legend>
-                            {{ forms.data_parameter_form.as_p }}
-                        </fieldset>
-                        {% endif %}
-                        <input type="submit" value="{{ endpoint.method }}">
-                    {% endspaceless %}</form>
-                    <section class="result request"><h2>Request</h2><pre><code></code></pre></section>
-                    <section class="result response-status"><h2>Response Status</h2><pre><code></code></pre></section>
-                    <section class="result response-headers"><h2>Response Status</h2><pre><code></code></pre></section>
-                    <section class="result response-body"><h2>Response Headers</h2><pre><code></code></pre></section>
-                </section>
-            </li>{% endfor %}
+                <li class="{{ endpoint.method|lower }} endpoint">
+                    <a href="#">
+                        <strong>{{ endpoint.method|upper }}</strong>
+                        <span>{{ endpoint.url }}</span>
+                        <i>{{ endpoint.description }}</i>
+                    </a>
+                    <section class="try-it">
+                        <form action="{{ endpoint.url }}" data-endpoint-url="{{ endpoint.url }}" method="{{ endpoint.method|upper }}">
+                            {% spaceless %}
+                                {% get_endpoint_forms endpoint as forms %}
+                                {% if forms.url_parameter_form.fields %}
+                                    <fieldset class="url-parameters">
+                                        <legend>URL Parameters</legend>
+                                        {{ forms.url_parameter_form.as_p }}
+                                    </fieldset>
+                                {% endif %}{% if forms.data_parameter_form.fields %}
+                                <fieldset>
+                                    <legend>Data Parameters</legend>
+                                    {{ forms.data_parameter_form.as_p }}
+                                </fieldset>
+                            {% endif %}
+                                <input type="submit" value="{{ endpoint.method }}">
+                            {% endspaceless %}</form>
+                        <section class="result request"><h2>Request</h2><pre><code></code></pre></section>
+                        <section class="result response-status"><h2>Response Status</h2><pre><code></code></pre></section>
+                        <section class="result response-headers"><h2>Response Headers</h2><pre><code></code></pre></section>
+                        <section class="result response-body"><h2>Response Body</h2><pre><code></code></pre></section>
+                    </section>
+                </li>{% endfor %}
         </ul>
     </section>
     {% endfor %}
-</body>
+{% endblock %}
 
-<!-- Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if offline -->
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-<script>window.jQuery || document.write('<script src="{{ STATIC_URL }}' +
-        'api_browser/js/jquery-1.7.1.min.js"><\/script>')</script>
-<script src="{{ STATIC_URL }}api_browser/js/jquery.class.min.js"></script>
-<script src="{{ STATIC_URL }}api_browser/js/jquery.rest-form.js"></script>
-<script src="{{ STATIC_URL }}api_browser/js/jquery.form2json.js"></script>
-<script src="{{ STATIC_URL }}api_browser/js/app.js"></script>
+{% block footer %}
+<!-- submit feedback form -->
+<div id="submit-feedback">
+    <form action="{% url api_browser_submit_feedback %}" method="post">
+        {% csrf_token %}
+        {{ feedback_form.as_p }}
+        <input type="submit" value="Submit">
+    </form>
+    <div id="feedback-response">{% trans "Thanks, Your feedback has been sent successfully." %}</div>
+    <a href="#" id="submit-feedback-button">{% trans "Submit Bug & Feedback" %}</a>
+</div>
+{% endblock %}
+
+{% block javascripts %}
 <script type="text/javascript">
     $(function () {
         new APIBrowser();
     });
 </script>
-</html>
+{% endblock %}

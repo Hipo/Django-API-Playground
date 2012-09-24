@@ -1,6 +1,7 @@
 import json
 
 from django.conf.urls import url
+from django.http import HttpResponse, HttpResponseBadRequest
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 
@@ -25,25 +26,29 @@ class APIBrowser(object):
         return self.get_deserializer_module().load(API_BROWSER_SCHEMA_PATH)
 
     # view logic
-    def get_feedback_form(self):
-        return self.feedback_form
-
     def browser_index(self, request):
         return render_to_response(self.index_template, {
-           "schema": self.get_schema()
+           "schema": self.get_schema(),
+           "feedback_form": self.feedback_form()
         }, context_instance=RequestContext(request))
 
     def save_feedback_form(self, request, form):
         form.save()
 
     def submit_feedback(self, request):
-        form = self.get_feedback_form()(request.POST or None)
+        form = self.feedback_form(request.POST or None)
         if form.is_valid():
             self.save_feedback_form(request, form)
-        return render_to_response(self.index_template, {
-            "form": form
-        }, context_instance=RequestContext(request))
+        if form.errors:
+            return self.create_json_response({
+                "errors": form.errors
+            }, response_class=HttpResponseBadRequest)
+        return self.create_json_response({
+            "success": True
+        })
 
+    def create_json_response(self, data, response_class=HttpResponse):
+        return response_class(json.dumps(data))
 
     # urls configuration
     @property
