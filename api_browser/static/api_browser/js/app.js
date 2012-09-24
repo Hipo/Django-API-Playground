@@ -22,7 +22,9 @@ var APIBrowser = $.Class.extend({
         // API Feedback
         feedback_form: "#submit-feedback form",
         feedback_response: "#submit-feedback #feedback-response",
-        feedback_show_button: "#submit-feedback-button"
+        feedback_show_button: "#submit-feedback-button",
+        feedback_endpoint: ".endpoint a.give-feedback",
+        feedback_resource_field: "#id_resource"
     },
 
     init: function () {
@@ -72,9 +74,15 @@ var APIBrowser = $.Class.extend({
         })
     },
 
-    // TODO: seperate feedback logic from the api browser.
-
     load_feedback_form: function () {
+
+        $(this.selectors.feedback_endpoint).click(function (event) {
+            $(this.selectors.feedback_form)
+                    .slideToggle(this.SLIDE_DURATION)
+                    .find(this.selectors.feedback_resource_field)
+                    .val($(event.target).data("endpoint"));
+        }.bind(this));
+
         $(this.selectors.feedback_form).submit(function () {
             var form = $(this.selectors.feedback_form);
             $.post(form.attr("action"), form.serialize(), this.show_feedback_response.bind(this), "json");

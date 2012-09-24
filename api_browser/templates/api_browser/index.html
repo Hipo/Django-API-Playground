@@ -34,10 +34,13 @@
                             {% endif %}
                                 <input type="submit" value="{{ endpoint.method }}">
                             {% endspaceless %}</form>
-                        <section class="result request"><h2>Request</h2><pre><code></code></pre></section>
-                        <section class="result response-status"><h2>Response Status</h2><pre><code></code></pre></section>
-                        <section class="result response-headers"><h2>Response Headers</h2><pre><code></code></pre></section>
-                        <section class="result response-body"><h2>Response Body</h2><pre><code></code></pre></section>
+                        <section class="result request"><h2>{% trans "Request" %}</h2><pre><code></code></pre></section>
+                        <section class="result response-status"><h2>{% trans "Response Status" %}</h2><pre><code></code></pre></section>
+                        <section class="result response-headers"><h2>{% trans "Response Headers" %}</h2><pre><code></code></pre></section>
+                        <section class="result response-body">
+                            <h2>{% trans "Response Body" %}</h2><pre><code></code></pre>
+                            <a class="give-feedback" data-endpoint="{{ endpoint.method|upper }} {{ endpoint.url }}" href="#">{% trans "Give feedback about this response" %}</a>
+                        </section>
                     </section>
                 </li>{% endfor %}
         </ul>

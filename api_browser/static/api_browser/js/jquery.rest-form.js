@@ -52,4 +52,4 @@
         });
     };
 
-})(window.jQuery)
+})(window.jQuery);

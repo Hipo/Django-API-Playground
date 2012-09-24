@@ -1,6 +1,6 @@
 from django.conf.urls.defaults import *
 
-from api.browser import ExampleAPIBrowser
+from api.views import ExampleAPIBrowser
 
 from links.resources import LinksResource
 from todos.resources import ToDoResource

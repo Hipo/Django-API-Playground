@@ -14,7 +14,7 @@ body {
 */
 
 body > header {
-    margin-top: 70px;
+    margin-top: 40px;
     overflow: hidden;
 
 }
@@ -205,22 +205,16 @@ section.resource {
                         font-size: 16px;
                     }
 
-                    section.resource ul li form input[type="submit"] {
-
-                    }
-
-                    section.resource ul li form input[type="submit"]:hover {
-
-                    }
-
-                    section.resource ul li form input[type="submit"]:active {
-
-                    }
-
 
 /*
 * Feedback form definitions
 */
+
+section.resource li.endpoint a.give-feedback {
+    background: none;
+    font-size: 13px;
+    text-decoration: underline;
+}
 
 #submit-feedback {
     bottom: 0;
@@ -249,6 +243,7 @@ section.resource {
         #submit-feedback textarea {
             width: 300px;
             height: 70px;
+            font-size: 16px;
         }
 
         #submit-feedback #submit-feedback-button {
