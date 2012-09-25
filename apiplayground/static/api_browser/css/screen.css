@@ -104,28 +104,12 @@ section.resource {
                 overflow: hidden;
             }
 
-            section.resource ul li.get a {
-                background-color: #f8ffea;
-            }
-
-            section.resource ul li.delete a {
-                background-color: #fffbe6;
-            }
-
-            section.resource ul li.post a {
-                background-color: #eaf6ff;
-            }
-
-            section.resource ul li.put a {
-                background-color: #d2ffd6;
-            }
-
                 section.resource ul li strong {
                     font-weight: normal;
                     display: block;
                     float: left;
                     padding-top: 2px;
-                    width: 90px;
+                    width: 100px;
                     text-align: center;
                 }
 
@@ -143,25 +127,6 @@ section.resource {
                     padding-top: 3px;
                     padding-right: 5px;
                     font-size: 15px;
-                }
-
-                /*
-                * HTTP Method definitions
-                */
-                section.resource ul li.get strong {
-                    background-color: #e7ff81;
-                }
-
-                section.resource ul li.delete strong {
-                    background-color: #ff9495;
-                }
-
-                section.resource ul li.post strong {
-                    background-color: #a3d7ff;
-                }
-
-                section.resource ul li.put strong {
-                    background-color: #90ff7e;
                 }
 
                 section.resource ul li fieldset {
@@ -204,6 +169,56 @@ section.resource {
                         margin-top: 10px;
                         font-size: 16px;
                     }
+
+/*
+* HTTP Method definitions
+*/
+
+/* GET */
+section.resource ul li.get a {
+    background-color: #e0ffda;
+}
+
+section.resource ul li.get strong {
+    background-color: #cbf886;
+}
+
+
+/* DELETE */
+section.resource ul li.delete a {
+    background-color: #ffe5ec;
+}
+
+section.resource ul li.delete strong {
+    background-color: #ffacbe;
+}
+
+/* POST */
+section.resource ul li.post a {
+    background-color: #fffabb;
+}
+
+section.resource ul li.post strong {
+    background-color: #ffe272;
+}
+
+/* PUT */
+section.resource ul li.put a {
+    background-color: #caf1ff;
+}
+
+section.resource ul li.put strong {
+    background-color: #aee7ff;
+}
+
+/* PATCH */
+section.resource ul li.patch a {
+    background-color: #f1dfff;
+}
+
+section.resource ul li.patch strong {
+    background-color: #efc3ff;
+}
 
 
 /*

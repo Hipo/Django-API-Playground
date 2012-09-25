@@ -2,14 +2,14 @@ from tastypie.authorization import Authorization
 from tastypie.resources import ModelResource
 
 from api.serializers import PrettyJSONSerializer
-from todos.models import ToDo
+from apiplayground.models import Feedback
 
 
-class ToDoResource(ModelResource):
+class FeedbackResource(ModelResource):
 
     class Meta:
-        resource_name = "todos"
-        queryset = ToDo.objects.all()
+        resource_name = "feedbacks"
+        queryset = Feedback.objects.all()
         authorization = Authorization()
         serializer = PrettyJSONSerializer()
         always_return_data = True

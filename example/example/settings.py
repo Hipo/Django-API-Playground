@@ -109,7 +109,6 @@ INSTALLED_APPS = (
 
     'apiplayground',
     'todos',
-    'links',
 
 )
 

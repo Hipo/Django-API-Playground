@@ -16,6 +16,11 @@ class ExampleAPIPlayground(APIPlayground):
                         "description": "Returns all to-do items"
                     },
                     {
+                        "method": "GET",
+                        "url": "/api/todos/{todo-id}",
+                        "description": "Returns specific todo item."
+                    },
+                    {
                         "method": "POST",
                         "url": "/api/todos/",
                         "description": "Creates new to-do item",
@@ -31,7 +36,7 @@ class ExampleAPIPlayground(APIPlayground):
                     {
                         "method": "PUT",
                         "url": "/api/todos/{todo-id}",
-                        "description": "Updates specific todo item",
+                        "description": "Replaces specific todo item",
                         "parameters": [{
                             "name": "description",
                             "type": "string",
@@ -44,30 +49,52 @@ class ExampleAPIPlayground(APIPlayground):
                        }]
                     },
                     {
+                        "method": "PATCH",
+                        "url": "/api/todos/{todo-id}",
+                        "description": "Updates specific todo items",
+                        "parameters": [{
+                                           "name": "is_completed",
+                                           "type": "boolean",
+                                           "description": "status of to-do item"
+                                       }]
+                    },
+                    {
                         "method": "DELETE",
                         "url": "/api/todos/",
                         "description": "Removes all to-do items"
                     },
                     {
-                        "method": "GET",
+                        "method": "DELETE",
                         "url": "/api/todos/{todo-id}",
-                        "description": "Returns specific todo item."
-                    }
+                        "description": "Delete specific to-do item"
+                    },
                 ]
             },
             {
-                "name": "/links",
-                "description": "This resource allows you to manage links.",
+                "name": "/feedbacks",
+                "description": "This resource allows you to manage feedbacks.",
                 "endpoints": [
                     {
                         "method": "GET",
-                        "url": "/api/links/",
-                        "description": "Returns all links"
+                        "url": "/api/feedbacks/",
+                        "description": "Returns all feedback items"
                     },
                     {
                         "method": "POST",
-                        "url": "/api/links/",
-                        "description": "Creates new link item"
+                        "url": "/api/feedbacks/",
+                        "description": "Creates new feedback item",
+                        "parameters": [{
+                            "name": "title",
+                            "type": "string"
+                        },
+                        {
+                            "name": "resource",
+                            "type": "string"
+                        },
+                        {
+                           "name": "description",
+                           "type": "string"
+                        }]
                     }
                 ]
             }
