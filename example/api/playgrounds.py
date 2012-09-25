@@ -66,7 +66,7 @@ class ExampleAPIPlayground(APIPlayground):
                     {
                         "method": "DELETE",
                         "url": "/api/todos/{todo-id}",
-                        "description": "Delete specific to-do item"
+                        "description": "Removes specific to-do item"
                     },
                 ]
             },
