@@ -5,7 +5,7 @@ A django app that creates api explorer for RESTful APIs.
 
 Works with any RESTful API. For example, you can create api explorer for your tastypie based API with this app.
 
-![API Playground](https://github.com/fatiherikli/django-api-playground/raw/master/docs/images/api-playground-1.png)
+Demo: <http://api-playground-demo.fatiherikli.com>
 
 ![API Playground](https://github.com/fatiherikli/django-api-playground/raw/master/docs/images/api-playground-2.png)
 
