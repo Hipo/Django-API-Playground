@@ -35,7 +35,7 @@ Add to installed apps:
 
 Installation is completed. You can define the API schema now.
 
-Firs step, Create a url:
+Firs step, Create an url:
 
     # urls.py
 
