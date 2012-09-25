@@ -7,6 +7,11 @@
 * */
 !(function ($) {
 
+    var GET = "GET",
+        POST = "POST",
+        PUT = "PUT",
+        DELETE = "DELETE";
+
     $.fn.restForm = function (_options) {
         var options = $.extend({
             "submit": function () {},
@@ -36,15 +41,22 @@
                 options.submit.call(this, form, build_request_headers(method, url, data,
                                                                 content_type));
 
-                // calling api resource
-                $.ajax({
+                var ajax_parameters = {
                     url: url,
                     type: method,
                     data: JSON.stringify(data),
                     contentType: content_type,
                     dataType: 'json',
                     processData: false
-                }).complete(options.complete.bind(this, form));
+                };
+
+                if (method === GET) {
+                    ajax_parameters.processData = true;
+                    ajax_parameters.data = data;
+                }
+
+                // calling api resource
+                $.ajax(ajax_parameters).complete(options.complete.bind(this, form));
 
                 return false;
 

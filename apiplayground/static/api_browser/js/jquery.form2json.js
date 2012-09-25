@@ -24,6 +24,10 @@
             result_object[input_name] = get_input_value($(this));
         });
 
+//        if ($.isEmptyObject(result_object)) {
+//            return ""
+//        }
+
         return result_object;
     };
 

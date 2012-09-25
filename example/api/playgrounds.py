@@ -1,9 +1,9 @@
-from apiplayground.browser import APIBrowser
+from apiplayground import APIPlayground
 
-class ExampleAPIBrowser(APIBrowser):
+class ExampleAPIPlayground(APIPlayground):
 
     schema = {
-        "title": "API Browser",
+        "title": "API Playground",
         "base_url": "http://localhost/api/",
         "resources": [
             {

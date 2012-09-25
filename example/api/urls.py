@@ -1,16 +1,14 @@
 from django.conf.urls.defaults import *
 
-from api.views import ExampleAPIBrowser
-
-from links.resources import LinksResource
 from todos.resources import ToDoResource
+from links.resources import LinksResource
+from api.playgrounds import ExampleAPIPlayground
 
 
 urlpatterns = patterns('',
 
     (r'^', include(ToDoResource().urls)),
     (r'^', include(LinksResource().urls)),
-    (r'browser/', include(ExampleAPIBrowser().urls)),
-
+    (r'browser/', include(ExampleAPIPlayground().urls)),
 
 )

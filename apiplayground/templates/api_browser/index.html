@@ -7,7 +7,7 @@
     <section class="resource">
         <header>
             <h3>{{ resource.name }}</h3>
-            <p>Helps you for managing todos.</p>
+            <p>{{ resource.description }}</p>
         </header>
         <ul>
             {% for endpoint in resource.endpoints %}
@@ -51,7 +51,7 @@
 {% block footer %}
 <!-- submit feedback form -->
 <div id="submit-feedback">
-    <form action="{% url api_browser_submit_feedback %}" method="post">
+    <form action="{% url api_playground_submit_feedback %}" method="post">
         {% csrf_token %}
         {{ feedback_form.as_p }}
         <input type="submit" value="Submit">

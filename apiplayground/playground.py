@@ -6,10 +6,10 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 
 from apiplayground.forms import FeedbackForm
-from apiplayground.settings import API_BROWSER_SCHEMA_PATH
+from apiplayground.settings import API_PLAYGROUND_SCHEMA_PATH
 
 
-class APIBrowser(object):
+class APIPlayground(object):
     """
     A base class that encapsulates all api browser options.
     """
@@ -44,7 +44,7 @@ class APIBrowser(object):
         """
         Loads the schema from file with defined deserialization module.
         """
-        return self.get_serializer().load(API_BROWSER_SCHEMA_PATH)
+        return self.get_serializer().load(API_PLAYGROUND_SCHEMA_PATH)
 
     def browser_index(self, request):
         """
@@ -95,8 +95,8 @@ class APIBrowser(object):
         You can override method for adding extra views.
         """
         return [
-            url("^$", self.browser_index, name="api_browser_index"),
-            url("^submit-feedback$", self.submit_feedback, name="api_browser_submit_feedback"),
+            url("^$", self.browser_index, name="api_playground_index"),
+            url("^submit-feedback$", self.submit_feedback, name="api_playground_submit_feedback"),
         ]
 
     @property
