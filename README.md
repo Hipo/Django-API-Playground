@@ -13,11 +13,13 @@ Demo: <http://api-playground-demo.fatiherikli.com>
 Instructions
 ------------
 
-Install from the pip:
+To get this application up and running, please follow the steps below:
+
+Install from pip:
 
     pip install django-api-playground
 
-Or from the source:
+Or from source:
 
     git clone git://github.com/fatiherikli/django-api-playground.git
     cd django-api-playground
