@@ -7,7 +7,7 @@ Works with any RESTful API. For example, you can create api explorer for your ta
 
 Demo: <http://api-playground-demo.fatiherikli.com>
 
-![API Playground](https://github.com/fatiherikli/django-api-playground/raw/master/docs/images/api-playground-2.png)
+![API Playground](https://github.com/hipo/Django-API-Playground/raw/master/docs/images/api-playground-2.png)
 
 
 Instructions
