@@ -9,6 +9,5 @@ urlpatterns = patterns('',
 
     (r'^', include(FeedbackResource().urls)),
     (r'^', include(ToDoResource().urls)),
-    (r'browser/', include(ExampleAPIPlayground().urls)),
 
 )
