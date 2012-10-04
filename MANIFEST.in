@@ -1,0 +1,2 @@
+recursive-include apiplayground/static *
+recursive-include apiplayground/templates *
