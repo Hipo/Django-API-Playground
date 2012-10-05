@@ -88,3 +88,8 @@ Second step, Define a subclass for your API::
         }
 
 That's all. More detailed documentation will be coming soon.
+
+Special Thanks
+==============
+
+ - Berker Peksag (for such a beautiful project name suggestion)
