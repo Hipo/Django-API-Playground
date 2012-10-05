@@ -1,29 +1,30 @@
 Django API Playground
----------------------
+=====================
 
 A django app that creates api explorer for RESTful APIs.
 
 Works with any RESTful API. For example, you can create api explorer for your tastypie based API with this app.
 
-Demo: <http://api-playground-demo.hipo.biz>
+Demo: `http://api-playground-demo.hipo.biz <http://api-playground-demo.hipo.biz>`_
 
-![API Playground](https://github.com/hipo/Django-API-Playground/raw/master/docs/images/api-playground-2.png)
+.. image:: https://github.com/hipo/Django-API-Playground/raw/master/docs/images/api-playground-2.png
+
 
 
 Instructions
-------------
+""""""""""""
 
 To get this application up and running, please follow the steps below:
 
-Install from pip:
+Install from pip::
 
     pip install django-api-playground
 
-Or from source:
+Or from source::
 
    pip install git+git://github.com/Hipo/Django-API-Playground.git
 
-Add to installed apps:
+Add to installed apps::
 
     INSTALLED_APPS =(
         # ...
@@ -33,7 +34,7 @@ Add to installed apps:
 
 Installation is completed. You can define the API schema now.
 
-Firs step, Create an url:
+Firs step, Create an url::
 
     # urls.py
 
@@ -43,7 +44,7 @@ Firs step, Create an url:
         (r'api-explorer/', include(ExampleAPIPlayground().urls)),
     )
 
-Second step, Define a subclass for your API:
+Second step, Define a subclass for your API::
 
     # api/playgrounds.py
 
