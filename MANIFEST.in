@@ -1,2 +1,2 @@
-recursive-include apiplayground/static/api_browser *
-recursive-include apiplayground/templates/api_browser *.html
+recursive-include apiplayground/static *
+recursive-include apiplayground/templates *
