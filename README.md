@@ -21,9 +21,7 @@ Install from pip:
 
 Or from source:
 
-    git clone git://github.com/Hipo/Django-API-Playground.git
-    cd Django-API-Playground
-    python setup.py install
+   pip install git+git://github.com/Hipo/Django-API-Playground.git
 
 Add to installed apps:
 
