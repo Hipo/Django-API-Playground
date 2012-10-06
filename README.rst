@@ -34,7 +34,7 @@ Add to installed apps::
 
 Installation is completed. You can define the API schema now.
 
-Firs step, Create an url::
+First step, Create an url::
 
     # urls.py
 
@@ -63,7 +63,12 @@ Second step, Define a subclass for your API::
                         {
                             "method": "GET",
                             "url": "/api/feedbacks/{feedback-id}",
-                            "description": "Returns a specific feedback item"
+                            "description": "Returns a specific feedback item",
+                            "parameters": [{
+                                "name": "order_by",
+                                "type": "select",
+                                "choices": [["", "None"], ["id", "id"], ["-id", "-id"]],
+                            }]
                         },
                         {
                             "method": "POST",
