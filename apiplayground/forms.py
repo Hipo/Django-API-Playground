@@ -20,7 +20,7 @@ class FeedbackForm(forms.ModelForm):
 TYPE_WIDGET_MAPPING = {
     "string": forms.TextInput,
     "boolean": forms.CheckboxInput,
-    "interger": forms.IntegerField,
+    "integer": forms.IntegerField,
 }
 
 
