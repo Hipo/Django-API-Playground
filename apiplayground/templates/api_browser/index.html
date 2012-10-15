@@ -49,16 +49,20 @@
 {% endblock %}
 
 {% block footer %}
-<!-- submit feedback form -->
-<div id="submit-feedback">
-    <form action="{% url api_playground_submit_feedback %}" method="post">
-        {% csrf_token %}
-        {{ feedback_form.as_p }}
-        <input type="submit" value="Submit">
-    </form>
-    <div id="feedback-response">{% trans "Thanks, Your feedback has been sent successfully." %}</div>
-    <a href="#" id="submit-feedback-button">{% trans "Submit Bug & Feedback" %}</a>
-</div>
+
+{% if feedback_form_toggle %}
+    <!-- submit feedback form -->
+    <div id="submit-feedback">
+        <form action="{% url api_playground_submit_feedback %}" method="post">
+            {% csrf_token %}
+            {{ feedback_form.as_p }}
+            <input type="submit" value="Submit">
+        </form>
+        <div id="feedback-response">{% trans "Thanks, Your feedback has been sent successfully." %}</div>
+        <a href="#" id="submit-feedback-button">{% trans "Submit Bug & Feedback" %}</a>
+    </div>
+{% endif %}
+
 {% endblock %}
 
 {% block javascripts %}

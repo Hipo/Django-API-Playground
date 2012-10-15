@@ -22,6 +22,7 @@ TYPE_WIDGET_MAPPING = {
     "boolean": forms.CheckboxInput
 }
 
+
 def build_data_form(parameters):
     """
     Builds a form with given parameters as dynamically.
@@ -29,7 +30,7 @@ def build_data_form(parameters):
     form_fields = SortedDict()
     for parameter in parameters:
         parameter_name = parameter.get("name")
-        parameter_type = parameter.get("type", "string") # default type is "string"
+        parameter_type = parameter.get("type", "string")  # default type is "string"
         is_required = parameter.get("is_required", False)
         form_widget = TYPE_WIDGET_MAPPING.get(parameter_type)
 

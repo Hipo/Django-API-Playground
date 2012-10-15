@@ -6,7 +6,8 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 
 from apiplayground.forms import FeedbackForm
-from apiplayground.settings import API_PLAYGROUND_SCHEMA_PATH
+from apiplayground.settings import API_PLAYGROUND_SCHEMA_PATH, \
+    API_PLAYGROUND_FEEDBACK
 
 
 class APIPlayground(object):
@@ -51,8 +52,9 @@ class APIPlayground(object):
         A view that returns api browser index.
         """
         return render_to_response(self.index_template, {
-           "schema": self.get_schema(),
-           "feedback_form": self.get_feedback_form(request)
+            "schema": self.get_schema(),
+            "feedback_form_toggle": API_PLAYGROUND_FEEDBACK,
+            "feedback_form": self.get_feedback_form(request)
         }, context_instance=RequestContext(request))
 
     def save_feedback_form(self, request, form):
