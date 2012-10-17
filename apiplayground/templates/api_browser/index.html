@@ -39,7 +39,9 @@
                         <section class="result response-headers"><h2>{% trans "Response Headers" %}</h2><pre><code></code></pre></section>
                         <section class="result response-body">
                             <h2>{% trans "Response Body" %}</h2><pre><code></code></pre>
-                            <a class="give-feedback" data-endpoint="{{ endpoint.method|upper }} {{ endpoint.url }}" href="#">{% trans "Give feedback about this response" %}</a>
+                            {% if feedback_form_toggle %}
+                                <a class="give-feedback" data-endpoint="{{ endpoint.method|upper }} {{ endpoint.url }}" href="#">{% trans "Give feedback about this response" %}</a>
+                            {% endif %}
                         </section>
                     </section>
                 </li>{% endfor %}
