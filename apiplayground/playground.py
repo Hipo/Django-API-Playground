@@ -5,6 +5,7 @@ from django.http import HttpResponse, HttpResponseBadRequest
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 
+from notification import models as notification
 from apiplayground.forms import FeedbackForm
 from apiplayground.settings import API_PLAYGROUND_SCHEMA_PATH, \
     API_PLAYGROUND_FEEDBACK
@@ -47,6 +48,16 @@ class APIPlayground(object):
         """
         return self.get_serializer().load(API_PLAYGROUND_SCHEMA_PATH)
 
+    def notice_count(self, request):
+        """Get count of logged in user's notifications"""
+        try:
+            notice_count = notification.Notice.objects\
+                            .filter(recipient=request.user, unseen=1)\
+                            .count()
+        except:
+            notice_count = ''
+        return notice_count
+
     def browser_index(self, request):
         """
         A view that returns api browser index.
@@ -54,7 +65,8 @@ class APIPlayground(object):
         return render_to_response(self.index_template, {
             "schema": self.get_schema(),
             "feedback_form_toggle": API_PLAYGROUND_FEEDBACK,
-            "feedback_form": self.get_feedback_form(request)
+            "feedback_form": self.get_feedback_form(request),
+            "notice_count": self.notice_count(request),
         }, context_instance=RequestContext(request))
 
     def save_feedback_form(self, request, form):
