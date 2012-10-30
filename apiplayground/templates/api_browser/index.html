@@ -14,7 +14,7 @@
                 <li class="{{ endpoint.method|lower }} endpoint">
                     <a href="#">
                         <strong>{{ endpoint.method|upper }}</strong>
-                        <span>{{ endpoint.url }}</span>
+                        <span>{{ endpoint.url|render_url}}</span>
                         <i>{{ endpoint.description }}</i>
                     </a>
                     <section class="try-it">

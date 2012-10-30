@@ -13,3 +13,11 @@ def get_endpoint_forms(endpoint):
         "url_parameter_form": url_parameter_form,
         "data_parameter_form": data_parameter_form
     }
+
+
+@register.filter()
+def render_url(url):
+    """
+    Removes GET parameters from URL.
+    """
+    return url.split("?")[0]
