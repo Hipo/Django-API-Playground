@@ -68,8 +68,12 @@ var APIBrowser = $.Class.extend({
     fill_url_parameters: function (url_parameters, form_selector) {
         $(url_parameters).change(function () {
             var form = $(this).parents(form_selector);
-            var rendered_url = form.data("endpoint-url").replace(
-                $(this).data("token"), $(this).val());
+            var rendered_url = form.data("endpoint-url");
+
+            form.find("input[data-token]").each(function () {
+                rendered_url = rendered_url.replace($(this).data("token"), $(this).val());
+            });
+
             form.attr("action", rendered_url)
         })
     },
