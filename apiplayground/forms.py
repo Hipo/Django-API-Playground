@@ -37,7 +37,7 @@ def build_data_form(parameters):
 
         assert "name" in parameter, "Parameter name is required"
         assert form_widget is not None, "Wrong field type."
-        assert type(parameter_choices) == type(list())
+        assert isinstance(parameter_choices, (list, tuple)), "Wrong choice type."
 
         widget = form_widget()
 
