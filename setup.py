@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name='django-api-playground',
-    version='0.1.0',
+    version='0.1.1',
     packages=['apiplayground', 'apiplayground.templatetags'],
     zip_safe = False,
     include_package_data=True,
