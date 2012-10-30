@@ -54,8 +54,13 @@ var APIBrowser = $.Class.extend({
         form.siblings(this.selectors.response_headers).show().find(
             this.selectors.code).html(xhr.getAllResponseHeaders());
 
+        var responseText = xhr.responseText || this.EMPTY_RESPONSE;
+        try {
+            responseText = JSON.stringify(JSON.parse(responseText), null, 2);
+        } catch (err) {}
+
         form.siblings(this.selectors.response_body).show().find(
-            this.selectors.code).text(xhr.responseText || this.EMPTY_RESPONSE);
+            this.selectors.code).text(responseText);
     },
 
     make_expandable: function (click_element, show_element, slide_duration) {

@@ -13,7 +13,12 @@ class ExampleAPIPlayground(APIPlayground):
                     {
                         "method": "GET",
                         "url": "/api/todos/",
-                        "description": "Returns all to-do items"
+                        "description": "Returns all to-do items",
+                        "parameters": [{
+                            "name": "order_by",
+                            "type": "select",
+                            "choices": [["", "None"], ["id", "id"], ["-id", "-id"]],
+                        }]
                     },
                     {
                         "method": "GET",
