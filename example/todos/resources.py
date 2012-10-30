@@ -13,3 +13,4 @@ class ToDoResource(ModelResource):
         authorization = Authorization()
         serializer = PrettyJSONSerializer()
         always_return_data = True
+        ordering = ["id"]

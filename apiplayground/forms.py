@@ -19,7 +19,8 @@ class FeedbackForm(forms.ModelForm):
 
 TYPE_WIDGET_MAPPING = {
     "string": forms.TextInput,
-    "boolean": forms.CheckboxInput
+    "boolean": forms.CheckboxInput,
+    "select": forms.Select,
 }
 
 def build_data_form(parameters):
@@ -30,15 +31,24 @@ def build_data_form(parameters):
     for parameter in parameters:
         parameter_name = parameter.get("name")
         parameter_type = parameter.get("type", "string") # default type is "string"
+        parameter_choices = parameter.get("choices", [])
         is_required = parameter.get("is_required", False)
         form_widget = TYPE_WIDGET_MAPPING.get(parameter_type)
 
         assert "name" in parameter, "Parameter name is required"
         assert form_widget is not None, "Wrong field type."
+        assert type(parameter_choices) == type(list())
 
         widget = form_widget()
-        form_fields[parameter_name] = forms.CharField(
-            label=parameter_name, widget=widget)
+
+        if parameter_type == "select":
+            form_fields[parameter_name] = forms.ChoiceField(
+                label=parameter_name,
+                widget=widget,
+                choices=parameter_choices)
+        else:
+            form_fields[parameter_name] = forms.CharField(
+                label=parameter_name, widget=widget)
 
         if is_required:
             widget.attrs["required"] = "required"
