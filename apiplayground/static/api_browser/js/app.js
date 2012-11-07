@@ -10,8 +10,7 @@ var APIBrowser = $.Class.extend({
         copied_fields: "input[isacopy], textarea[isacopy], select[isacopy]",
 
         // Global elements
-        global_form : "#global-form",
-        global_inputs: "#global-form input[type='text'], #global-form input[type='checkbox'], #global-form textarea, #global-form select",
+        global_inputs : "#global-form input[type='text'], #global-form input[type='checkbox'], #global-form textarea, #global-form select",
  
         // API Resources
         endpoint_form : ".endpoint form",
