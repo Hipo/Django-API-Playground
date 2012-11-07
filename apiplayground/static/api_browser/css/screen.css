@@ -92,6 +92,12 @@ section.resource {
                 display: none;
             }
 
+            section.resource ul li .global {
+                padding: 10px 0;
+                background-color: #fbfbfb;
+                border-bottom: 1px solid #e8e8e8;
+            }
+
             section.resource ul li .result {
                 display: none;
             }

@@ -14,6 +14,7 @@
 
     $.fn.restForm = function (_options) {
         var options = $.extend({
+            "presubmit": function () {},
             "submit": function () {},
             "complete": function () {}
         }, _options);
@@ -32,6 +33,10 @@
         this.each(function () {
             $(this).submit(function () {
                 var form = $(this);
+
+                // firing presubmit event
+                options.presubmit.call(this, form);
+
                 var data = form.form2json();
                 var method = form.attr("method");
                 var url = form.attr("action");
