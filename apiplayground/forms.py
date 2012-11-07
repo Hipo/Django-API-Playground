@@ -32,6 +32,7 @@ def build_data_form(parameters):
         parameter_name = parameter.get("name")
         parameter_type = parameter.get("type", "string") # default type is "string"
         parameter_choices = parameter.get("choices", [])
+        parameter_default = parameter.get("default", None)
         is_required = parameter.get("is_required", False)
         form_widget = TYPE_WIDGET_MAPPING.get(parameter_type)
 
@@ -45,10 +46,11 @@ def build_data_form(parameters):
             form_fields[parameter_name] = forms.ChoiceField(
                 label=parameter_name,
                 widget=widget,
-                choices=parameter_choices)
+                choices=parameter_choices,
+                initial=parameter_default)
         else:
             form_fields[parameter_name] = forms.CharField(
-                label=parameter_name, widget=widget)
+                label=parameter_name, widget=widget, initial=parameter_default)
 
         if is_required:
             widget.attrs["required"] = "required"

@@ -18,6 +18,7 @@ class ExampleAPIPlayground(APIPlayground):
                             "name": "order_by",
                             "type": "select",
                             "choices": [["", "None"], ["id", "id"], ["-id", "-id"]],
+                            "default": "id"
                         }]
                     },
                     {
