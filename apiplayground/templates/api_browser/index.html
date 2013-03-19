@@ -3,6 +3,25 @@
 
 {% block content %}
 {% load api_browser_tags %}
+
+{% get_global_forms schema as global_forms %}
+{% if global_forms.data_parameter_form.fields %}
+<section class="resource">
+    <ul>
+        <li>
+            <section class="global">
+                <form id="global-form">
+                    <fieldset>
+                        <legend>Global Parameters</legend>
+                        {{ global_forms.data_parameter_form.as_p }}
+                    </fieldset>
+                </form>
+            </section>
+        </li>
+    </ul>
+</section>
+{% endif %}
+
 {% for resource in schema.resources %}
     <section class="resource">
         <header>

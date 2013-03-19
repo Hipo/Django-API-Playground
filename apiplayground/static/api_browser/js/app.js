@@ -7,7 +7,11 @@ var APIBrowser = $.Class.extend({
 
     selectors: {
         input_fields: "input[type='text'], input[type='checkbox'], textarea, select",
+        copied_fields: "input[isacopy], textarea[isacopy], select[isacopy]",
 
+        // Global elements
+        global_inputs : "#global-form input[type='text'], #global-form input[type='checkbox'], #global-form textarea, #global-form select",
+ 
         // API Resources
         endpoint_form : ".endpoint form",
         endpoint_anchor: ".endpoint a",
@@ -37,9 +41,15 @@ var APIBrowser = $.Class.extend({
 
     load_rest_form: function () {
         $(this.selectors.endpoint_form).restForm({
+            "presubmit": this.presubmit_form.bind(this),
             "submit": this.submit_form.bind(this),
             "complete": this.complete_ajax_request.bind(this)
         });
+    },
+
+    presubmit_form: function (form) {
+        // Copy global paramaters to submitted form.
+        $(this.selectors.global_inputs).not(':submit').clone().hide().attr('isacopy','y').appendTo(form);
     },
 
     submit_form: function (form, request_headers) {
@@ -48,6 +58,9 @@ var APIBrowser = $.Class.extend({
     },
 
     complete_ajax_request: function (form, xhr) {
+        // Clear copied elements (prevent duplicates)
+        $(this.selectors.copied_fields).remove();
+
         form.siblings(this.selectors.response_status).show().find(
             this.selectors.code).html(xhr.statusText + " (" + xhr.status + ")");
 
