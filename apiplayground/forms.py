@@ -21,7 +21,9 @@ TYPE_WIDGET_MAPPING = {
     "string": forms.TextInput,
     "boolean": forms.CheckboxInput,
     "select": forms.Select,
+    "integer": forms.IntegerField
 }
+
 
 def build_data_form(parameters):
     """
@@ -30,9 +32,11 @@ def build_data_form(parameters):
     form_fields = SortedDict()
     for parameter in parameters:
         parameter_name = parameter.get("name")
-        parameter_type = parameter.get("type", "string") # default type is "string"
+        parameter_type = parameter.get("type", "string")
         parameter_choices = parameter.get("choices", [])
+
         is_required = parameter.get("is_required", False)
+        default = parameter.get("default", None)
         form_widget = TYPE_WIDGET_MAPPING.get(parameter_type)
 
         assert "name" in parameter, "Parameter name is required"
@@ -45,10 +49,11 @@ def build_data_form(parameters):
             form_fields[parameter_name] = forms.ChoiceField(
                 label=parameter_name,
                 widget=widget,
+                initial=default,
                 choices=parameter_choices)
         else:
             form_fields[parameter_name] = forms.CharField(
-                label=parameter_name, widget=widget)
+                label=parameter_name, widget=widget, initial=default)
 
         if is_required:
             widget.attrs["required"] = "required"
