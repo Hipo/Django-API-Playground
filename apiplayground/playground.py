@@ -1,4 +1,5 @@
 import json
+import markdown
 
 from django.conf.urls import url
 from django.http import HttpResponse, HttpResponseBadRequest
@@ -51,6 +52,7 @@ class APIPlayground(object):
         """
         A view that returns api browser index.
         """
+        self.build_full_description()
         return render_to_response(self.index_template, {
             "schema": self.get_schema(),
             "feedback_form_toggle": API_PLAYGROUND_FEEDBACK,
@@ -100,6 +102,14 @@ class APIPlayground(object):
             url("^$", self.browser_index, name="api_playground_index"),
             url("^submit-feedback$", self.submit_feedback, name="api_playground_submit_feedback"),
         ]
+
+    def build_full_description(self):
+        schema = self.get_schema()
+        for resource in schema['resources']:
+            for endpoint in resource.get('endpoints', []):
+                if endpoint.get('full_description', ""):
+                    endpoint['full_description'] = markdown.markdown(
+                        endpoint['full_description'].strip())
 
     @property
     def urls(self):

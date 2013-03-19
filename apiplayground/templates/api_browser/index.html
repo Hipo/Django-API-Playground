@@ -18,6 +18,9 @@
                         <i>{{ endpoint.description }}</i>
                     </a>
                     <section class="try-it">
+                        {% if endpoint.full_description %}
+                            <div class="full_description">{{ endpoint.full_description|safe }}</div>
+                        {% endif %}
                         <form action="{{ endpoint.url }}" data-endpoint-url="{{ endpoint.url }}" method="{{ endpoint.method|upper }}">
                             {% spaceless %}
                                 {% get_endpoint_forms endpoint as forms %}

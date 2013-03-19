@@ -151,6 +151,22 @@ section.resource {
                     font-size: 14px;
                 }
 
+                section.resource ul li .full_description {
+                    font-size: 16px;
+                    font-weight: normal;
+                    padding: 0 30px;
+                }
+                    section.resource ul li .full_description ol li {
+                        list-style-type: decimal;
+                    }
+
+                    section.resource ul li .full_description ul {
+                        padding: 0 0 0 40px;
+                    }
+                        section.resource ul li .full_description ul li {
+                            list-style-type: disc;
+                        }
+
                 section.resource ul li form, section.resource ul li .result {
                     margin: 0 100px;
                     overflow: hidden;
