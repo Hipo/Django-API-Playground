@@ -32,6 +32,10 @@ Add to installed apps::
         'apiplayground',
     )
 
+Create database tables::
+
+    ./manage.py syncdb
+
 Installation is completed. You can define the API schema now.
 
 First step, Create an url::
