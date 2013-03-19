@@ -72,6 +72,7 @@ Second step, Define a subclass for your API::
                                 "name": "order_by",
                                 "type": "select",
                                 "choices": [["", "None"], ["id", "id"], ["-id", "-id"]],
+                                "default": "id"
                             }]
                         },
                         {
